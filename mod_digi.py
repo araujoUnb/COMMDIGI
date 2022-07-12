@@ -85,7 +85,7 @@ class simulBPSK :
 
     
 
-    def desemepnho(self):
+    def desempenho(self):
         BER = np.zeros(len(self.EbNoVec))
         (s_bb,t)= bpsk_mod(self.ak,self.L)
         s = s_bb*np.cos(2*np.pi*self.Fc*t/self.Fs)
@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     teste = simulBPSK(N,L,EbNo,Fc)
     teste.plotData()
-    teste.desemepnho()
+    teste.desempenho()
 
 
 
