@@ -528,7 +528,7 @@ def msk_mod(a,fc,OF,enable_plot=False):
         plt.plot(t,sIc_t,'r')
         plt.xlim(-Tb,20*Tb)
         plt.title('$s_I(t)$')
-        plt.savefig('Ch2_images/msk_mod_im1')
+        #plt.savefig('Ch2_images/msk_mod_im1')
 
         plt.figure(1)
         plt.clf()
@@ -536,14 +536,14 @@ def msk_mod(a,fc,OF,enable_plot=False):
         plt.plot(t,sQc_t,'r')
         plt.xlim(-Tb,20*Tb)
         plt.title('$s_Q(t)$')
-        plt.savefig('Ch2_images/msk_mod_im2')
+        #plt.savefig('Ch2_images/msk_mod_im2')
 
         plt.figure(2)
         plt.clf()
         plt.plot(t,s_t,'--')
         plt.xlim(-Tb,20*Tb)
         plt.title('s(t)')
-        plt.savefig('Ch2_images/msk_mod_im3')
+        #plt.savefig('Ch2_images/msk_mod_im3')
 
     result = dict()
     result['s(t)']=s_t;result['sI(t)']=sI_t;result['sQ(t)']=sQ_t;result['t']=t

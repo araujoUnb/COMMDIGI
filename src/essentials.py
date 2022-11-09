@@ -1,5 +1,8 @@
+import plotly.express as px
+import  plotly.graph_objects as go
+
 # PSD estimation using Welch method
-def plotWelchPSD(x, fs, fc, ax = None, color = 'b', label = None):
+def plotWelchPSD(x, fs, fc, fig, color = 'firebrick', label = None):
 
     from scipy.signal import welch
     from numpy import log10, hanning
@@ -12,11 +15,10 @@ def plotWelchPSD(x, fs, fc, ax = None, color = 'b', label = None):
     indices = (f>=fc) & (f<4*fc) # to plot PSD from Fc to 4*Fc
     Pxx = Pxx[indices]/Pxx[indices][0] # normalize PSD w.r.t. Fc
 
-    plt.figure(1)
-    plt.plot(f[indices]-fc, 10*log10(Pxx))
-    plt.title('Welch plot')
-    plt.xlabel('Frequency (Hz)')
-    plt.ylabel('PSD (dB/Hz)')
+    #fig= go.Figure()
+
+    fig.add_trace(go.Scatter(x=f[indices]-fc,y=10*log10(Pxx),name=label,
+                         line=dict(color=color, width=2)))
     #plt.savefig('Ch1_images/welch_example_im2.png')
 
 
