@@ -44,3 +44,6 @@ def rician_channel(K_dB, s):
     sigma = np.sqrt(1/(2*(K+1)))
     h = random.normal(mu, sigma, N)+1j*random.normal(mu, sigma, N)
     return abs(h)
+
+if __name__='__main__':
+   
