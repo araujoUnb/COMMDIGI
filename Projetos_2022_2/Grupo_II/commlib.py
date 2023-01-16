@@ -141,8 +141,12 @@ def MPSK_mod(bstream, bitrate, fc, fs, M=4, ctl_phase=0, offt=False, plt_ctln=Fa
 
     m = 0.5*(base_sig+M+1)
 
+
     a1 = smi_psk(0.5*(base_sig+M+1), M, ctl_phase, bitrate, fs)
     a2 = smq_psk(0.5*(base_sig+M+1), M, ctl_phase, bitrate, fs)
+    a1_sub = a1[int(Tsym*fs/2):a1.size-1:int(Tsym*fs)]
+    a2_sub = a2[int(Tsym*fs/2):a2.size-1:int(Tsym*fs)]
+    base_t_sub = base_t[int(Tsym*fs/2):base_t.size-1:int(Tsym*fs)] 
 
     if plt_signals:
 
@@ -156,7 +160,7 @@ def MPSK_mod(bstream, bitrate, fc, fs, M=4, ctl_phase=0, offt=False, plt_ctln=Fa
     inphase = smic_psk(m, M, ctl_phase, fc, base_t, bitrate, fs)
     qphase = smqc_psk(m, M, ctl_phase, fc, base_t, bitrate, fs)
 
-    r = [None, None, None, None, None]
+    r = [None, None, None, None, None, None]
     if offt:
         last_sym = base_sig[-4]
         offt_base_sig = np.concatenate((base_sig, np.ones(int(Tsym/2*fs))*last_sym))
@@ -216,9 +220,10 @@ def MPSK_mod(bstream, bitrate, fc, fs, M=4, ctl_phase=0, offt=False, plt_ctln=Fa
 
     r[0] = base_t
     r[1] = inphase+qphase
-    r[2] = a1
-    r[3] = a2
-    r[4] = a1 + 1j*a2
+    r[2] = a1_sub
+    r[3] = a2_sub
+    r[4] = a1_sub + 1j*a2_sub
+    r[5] = base_t_sub
     plt.rcParams['figure.figsize'] = [5, 5]
     return r
 
@@ -229,6 +234,56 @@ def phi1(fc, timebase, Rs, fss):
 
 def phi2(fc, timebase, Rs, fss):
   return -np.sqrt(pulse_energy(base_pulse, Rs, fss)/2)*np.sin(2*np.pi*fc*timebase)
+
+# demodulacao com componentes em fase e quadratura como entrada
+# (banda base)
+def MPSK_dem_j(phase, quad, cphase, M, fc, bitrate, fs):
+    Rs = bitrate/np.log2(M)
+
+    aux = np.max(np.abs(phase)) if np.max(np.abs(phase))!=0 else 1
+    phase = phase/aux
+
+    aux = np.max(np.abs(quad)) if np.max(np.abs(quad))!=0 else 1
+    quad = quad/aux
+    phase,quad=quad,phase
+
+    plt.plot(phase, quad, 'o')
+
+    # Obter codigo gray de log2(M) bits 
+    k = np.log2(M)
+    code_set = gray(k)
+    m_set = np.array(range(1, M+1))
+    sym_set = np.array([2*m-1-M for m in m_set])
+    # tabela relacionando o m-zinho ao codigo gray correspondente
+    sym_table_m = {int(i):code_set[int(i)-1] for i in m_set}
+
+    # gerar constelação de referencia 
+    i = np.sqrt(2/pulse_energy(base_pulse, Rs, fs))*smi_psk(m_set, M, -cphase-np.pi/2, Rs, fs)
+    q = np.sqrt(2/pulse_energy(base_pulse, Rs, fs))*smq_psk(m_set, M, -cphase-np.pi/2, Rs, fs)
+
+    # relacionar cada par ordenado (fase, quadratura) da constelacao de ref.
+    # com o seu símbolo correspondente
+    lut = dict(zip(zip(i, q), m_set))
+    for point in lut.keys():
+        plt.plot(*point, marker='*', color='red')
+        text = str(lut[point]) + ':' + str(sym_table_m[lut[point]])
+        plt.annotate(text, point)
+
+    demodulated = ''
+    # calcular distancia entre pontos da constelacao de ref. e pontos
+    # dos sinais de fase e quadratura obtidos anteriormente
+    for s in zip(phase, quad):
+        dists = dict()
+        for ref in lut:
+          d = np.sqrt((s[0]-ref[0])**2+(s[1]-ref[1])**2)
+          dists[d] = lut[ref]
+        ks = np.array(list(dists.keys()))
+        # obter o símbolo com menor distância
+        demodulated += sym_table_m[dists[np.min(ks)]][::-1] 
+    demodulated = [int(i) for i in list(demodulated)]
+    return demodulated
+
+
 
 # signal: sinal de entrada
 # timebase: eixo do tempo para o sinal de entrada
