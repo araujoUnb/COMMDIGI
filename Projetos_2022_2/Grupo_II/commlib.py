@@ -213,14 +213,12 @@ def MPSK_mod(bstream, bitrate, fc, fs, M=4, ctl_phase=0, offt=False, plt_ctln=Fa
         ax[3].set_ylabel("$s_q(t)$")
         ax[4].plot(base_t, inphase+qphase)
         ax[4].set_ylabel("s(t)")
-        ax[4].set_xlabel("tempo (s)")
-
-    else:
-        r[2] = a1
 
     r[0] = base_t
     r[1] = inphase+qphase
+    r[2] = a1
     r[3] = a2
+    r[4] = a1 + 1j*a2
     plt.rcParams['figure.figsize'] = [5, 5]
     return r
 
@@ -334,6 +332,7 @@ if __name__=='__main__':
     bitrate=100
     bitstream = [random.randint(0,1) for e in range(Nsym*int(k))]
     print(bitstream)
-    print(len(bitstream))
     txsignals=MPSK_mod(bitstream, bitrate, fc, fs, M, ctl_phase, False, plt_ctln=True, plt_signals=True)
-    plt.show()
+    print(txsignals[3])
+    print(len(txsignals[3]))
+    #plt.show()
