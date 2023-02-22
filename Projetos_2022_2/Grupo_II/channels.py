@@ -26,18 +26,15 @@ def awgn_channel(s, SNRdB, L=1):
     return r
 
 
-def rayleigh_channel(s):
+def rayleigh_channel(N):
 
     #Filtro gaussiano com 1 tap
-    N = len(s[4])
     sigma = 1/np.sqrt(2)
     h = random.normal(0, sigma, N)+1j*random.normal(0, sigma, N)
     return abs(h)
 
 
-def rician_channel(K_dB, s):
-
-    N = len(s[4])
+def rician_channel(K_dB, N):
     K = 10**(K_dB/10)
     mu = np.sqrt(K/(2*(K+1)))
     sigma = np.sqrt(1/(2*(K+1)))
