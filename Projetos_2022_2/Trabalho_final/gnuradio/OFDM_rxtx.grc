@@ -260,6 +260,27 @@ blocks:
     coordinate: [816, 84.0]
     rotation: 0
     state: enabled
+- name: rollof
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.1'
+    stop: '1'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 524.0]
+    rotation: 0
+    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -316,7 +337,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1088, 780.0]
+    coordinate: [1008, 780.0]
     rotation: 0
     state: enabled
 - name: audio_sink_0_0
@@ -333,7 +354,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 1500.0]
+    coordinate: [1256, 1516.0]
     rotation: 0
     state: disabled
 - name: audio_sink_0_0_0
@@ -423,7 +444,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [832, 880.0]
+    coordinate: [752, 880.0]
     rotation: 0
     state: enabled
 - name: blocks_float_to_uchar_0
@@ -438,7 +459,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [600, 288.0]
+    coordinate: [624, 288.0]
     rotation: 0
     state: disabled
 - name: blocks_multiply_const_vxx_0_0_0
@@ -492,7 +513,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [440, 284.0]
+    coordinate: [456, 284.0]
     rotation: 0
     state: disabled
 - name: blocks_multiply_xx_0
@@ -510,7 +531,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1328, 824.0]
+    coordinate: [1224, 832.0]
     rotation: 0
     state: enabled
 - name: blocks_repack_bits_bb_0
@@ -683,21 +704,6 @@ blocks:
     coordinate: [632, 1728.0]
     rotation: 0
     state: disabled
-- name: blocks_uchar_to_float_0_0_0
-  id: blocks_uchar_to_float
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1016, 448.0]
-    rotation: 0
-    state: disabled
 - name: blocks_vector_source_x_0
   id: blocks_vector_source_x
   parameters:
@@ -715,7 +721,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [24, 188.0]
+    coordinate: [16, 188.0]
     rotation: 0
     state: enabled
 - name: blocks_wavfile_source_0_0
@@ -751,7 +757,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [0, 420.0]
+    coordinate: [8, 372.0]
     rotation: 0
     state: disabled
 - name: channels_channel_model_0
@@ -762,12 +768,12 @@ blocks:
     block_tags: 'True'
     comment: ''
     epsilon: '1.0'
-    freq_offset: 0 * 1.0/fft_len
+    freq_offset: 1.0 * 1.0/fft_len
     maxoutbuf: '0'
     minoutbuf: '0'
     noise_voltage: noise
     seed: '0'
-    taps: '1.0'
+    taps: '[1.0, 0.5, 0.1]'
   states:
     bus_sink: false
     bus_source: false
@@ -832,7 +838,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1704, 996.0]
+    coordinate: [1480, 996.0]
     rotation: 180
     state: enabled
 - name: digital_constellation_decoder_cb_1
@@ -912,7 +918,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1576, 804.0]
+    coordinate: [1416, 816.0]
     rotation: 0
     state: enabled
 - name: digital_ofdm_carrier_allocator_cvc_0
@@ -968,7 +974,7 @@ blocks:
     input_size: fft_len
     maxoutbuf: '0'
     minoutbuf: '0'
-    rolloff: '0'
+    rolloff: rollof
     tagname: packet_length_tag_key
   states:
     bus_sink: false
@@ -1038,7 +1044,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1696, 1084.0]
+    coordinate: [1360, 1084.0]
     rotation: 0
     state: enabled
 - name: digital_ofdm_serializer_vcc_payload
@@ -1079,7 +1085,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [784, 780.0]
+    coordinate: [704, 780.0]
     rotation: 0
     state: enabled
 - name: digital_packet_headergenerator_bb_0
@@ -1116,7 +1122,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 996.0]
+    coordinate: [1184, 996.0]
     rotation: 180
     state: enabled
 - name: fec_ber_bf_0
@@ -1510,7 +1516,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 932.0]
+    coordinate: [544, 932.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_1
@@ -1548,7 +1554,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
-    gui_hint: ''
+    gui_hint: notebooks_tab@1
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -1563,7 +1569,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: "\"Frequ\xEAncia do sinal Recebido\""
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -1622,8 +1628,8 @@ blocks:
     factor7: '1'
     factor8: '1'
     factor9: '1'
-    graph_type: qtgui.NUM_GRAPH_HORIZ
-    gui_hint: ''
+    graph_type: qtgui.NUM_GRAPH_NONE
+    gui_hint: notebooks_tab@0
     label1: ''
     label10: ''
     label2: ''
@@ -1657,103 +1663,6 @@ blocks:
     coordinate: [960, 1604.0]
     rotation: 0
     state: true
-- name: qtgui_time_sink_x_0
-  id: qtgui_time_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha1: '1.0'
-    alpha10: '1.0'
-    alpha2: '1.0'
-    alpha3: '1.0'
-    alpha4: '1.0'
-    alpha5: '1.0'
-    alpha6: '1.0'
-    alpha7: '1.0'
-    alpha8: '1.0'
-    alpha9: '1.0'
-    autoscale: 'False'
-    axislabels: 'True'
-    color1: blue
-    color10: dark blue
-    color2: red
-    color3: green
-    color4: black
-    color5: cyan
-    color6: magenta
-    color7: yellow
-    color8: dark red
-    color9: dark green
-    comment: ''
-    ctrlpanel: 'False'
-    entags: 'True'
-    grid: 'False'
-    gui_hint: ''
-    label1: Signal 1
-    label10: Signal 10
-    label2: Signal 2
-    label3: Signal 3
-    label4: Signal 4
-    label5: Signal 5
-    label6: Signal 6
-    label7: Signal 7
-    label8: Signal 8
-    label9: Signal 9
-    legend: 'True'
-    marker1: '-1'
-    marker10: '-1'
-    marker2: '-1'
-    marker3: '-1'
-    marker4: '-1'
-    marker5: '-1'
-    marker6: '-1'
-    marker7: '-1'
-    marker8: '-1'
-    marker9: '-1'
-    name: '""'
-    nconnections: '1'
-    size: '1024'
-    srate: samp_rate
-    stemplot: 'False'
-    style1: '1'
-    style10: '1'
-    style2: '1'
-    style3: '1'
-    style4: '1'
-    style5: '1'
-    style6: '1'
-    style7: '1'
-    style8: '1'
-    style9: '1'
-    tr_chan: '0'
-    tr_delay: '0'
-    tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
-    tr_slope: qtgui.TRIG_SLOPE_POS
-    tr_tag: '""'
-    type: complex
-    update_time: '0.10'
-    width1: '1'
-    width10: '1'
-    width2: '1'
-    width3: '1'
-    width4: '1'
-    width5: '1'
-    width6: '1'
-    width7: '1'
-    width8: '1'
-    width9: '1'
-    ylabel: Amplitude
-    ymax: '1'
-    ymin: '-1'
-    yunit: '""'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [728, 460.0]
-    rotation: 0
-    state: disabled
 - name: qtgui_time_sink_x_0_0
   id: qtgui_time_sink_x
   parameters:
@@ -1807,7 +1716,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '"Payload Enviado"'
+    name: '"Simbolos OFDM Enviados"'
     nconnections: '1'
     size: '1024'
     srate: samp_rate
@@ -1979,7 +1888,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'True'
-    gui_hint: ''
+    gui_hint: notebooks_tab@0
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -2001,7 +1910,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: '"Sinal recebido demodulado"'
     nconnections: '1'
     size: '1024'
     srate: samp_rate
@@ -2019,9 +1928,9 @@ blocks:
     tr_chan: '0'
     tr_delay: '0'
     tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_mode: qtgui.TRIG_MODE_TAG
     tr_slope: qtgui.TRIG_SLOPE_POS
-    tr_tag: '""'
+    tr_tag: packet_length_tag_key
     type: float
     update_time: '0.10'
     width1: '1'
@@ -2045,103 +1954,6 @@ blocks:
     coordinate: [1232, 1412.0]
     rotation: 0
     state: enabled
-- name: qtgui_time_sink_x_2_0
-  id: qtgui_time_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha1: '1.0'
-    alpha10: '1.0'
-    alpha2: '1.0'
-    alpha3: '1.0'
-    alpha4: '1.0'
-    alpha5: '1.0'
-    alpha6: '1.0'
-    alpha7: '1.0'
-    alpha8: '1.0'
-    alpha9: '1.0'
-    autoscale: 'True'
-    axislabels: 'True'
-    color1: blue
-    color10: dark blue
-    color2: red
-    color3: green
-    color4: black
-    color5: cyan
-    color6: magenta
-    color7: yellow
-    color8: dark red
-    color9: dark green
-    comment: ''
-    ctrlpanel: 'False'
-    entags: 'True'
-    grid: 'True'
-    gui_hint: ''
-    label1: Signal 1
-    label10: Signal 10
-    label2: Signal 2
-    label3: Signal 3
-    label4: Signal 4
-    label5: Signal 5
-    label6: Signal 6
-    label7: Signal 7
-    label8: Signal 8
-    label9: Signal 9
-    legend: 'True'
-    marker1: '-1'
-    marker10: '-1'
-    marker2: '-1'
-    marker3: '-1'
-    marker4: '-1'
-    marker5: '-1'
-    marker6: '-1'
-    marker7: '-1'
-    marker8: '-1'
-    marker9: '-1'
-    name: '""'
-    nconnections: '1'
-    size: '1024'
-    srate: samp_rate
-    stemplot: 'False'
-    style1: '1'
-    style10: '1'
-    style2: '1'
-    style3: '1'
-    style4: '1'
-    style5: '1'
-    style6: '1'
-    style7: '1'
-    style8: '1'
-    style9: '1'
-    tr_chan: '0'
-    tr_delay: '0'
-    tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
-    tr_slope: qtgui.TRIG_SLOPE_POS
-    tr_tag: '""'
-    type: float
-    update_time: '0.10'
-    width1: '1'
-    width10: '1'
-    width2: '1'
-    width3: '1'
-    width4: '1'
-    width5: '1'
-    width6: '1'
-    width7: '1'
-    width8: '1'
-    width9: '1'
-    ylabel: Amplitude
-    ymax: '1'
-    ymin: '-1'
-    yunit: '""'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1192, 428.0]
-    rotation: 0
-    state: disabled
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -2198,7 +2010,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1984, 820.0]
+    coordinate: [1768, 812.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_1
@@ -2237,7 +2049,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1984, 932.0]
+    coordinate: [1768, 948.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_2
@@ -2302,7 +2114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 1340.0]
+    coordinate: [32, 1340.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0_1
@@ -2397,7 +2209,6 @@ connections:
 - [blocks_uchar_to_float_0, '0', blocks_multiply_const_vxx_0_0_0, '0']
 - [blocks_uchar_to_float_0, '0', qtgui_freq_sink_x_1, '0']
 - [blocks_uchar_to_float_0_0, '0', blocks_multiply_const_vxx_0_0_0_0, '0']
-- [blocks_uchar_to_float_0_0_0, '0', qtgui_time_sink_x_2_0, '0']
 - [blocks_vector_source_x_0, '0', blocks_throttle_0, '0']
 - [blocks_wavfile_source_0_0, '0', rational_resampler_xxx_0, '0']
 - [channels_channel_model_0, '0', blocks_delay_0, '0']
