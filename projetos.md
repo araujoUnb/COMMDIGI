@@ -17,12 +17,19 @@ A apresentação e relatório devem conter os seguintes itens
   * Mostrar através de curvas as componentes de banda-básica e banda passante
   * Discutir as diferenças de cada modulação
 
+
 * Classificar as técnicas de modulação se são com ou sem memória
 
 * Comparar a densidade espectral de potência das três modulações
 
 * Comparar a taxa de erro de bits (BER) das modulações
-  * Atenção : A equipe é livre para escolher como deverá variar os parâmetros, mas o objetivo aqui é que a equipe apresente de forma clara que parâmetros influencia na BER
+  * Considere os seguintes canais
+    * AWGN
+    * Rayleigh
+    * Rice
+    * Canal com filtro FIR
+  * A equipe é livre para escolher qualquer que seja o equalizador, mas deve explicar como funciona o equalizador.
+  
 
 
 Após a apresentação da equipe será aberto para perguntas.
@@ -45,6 +52,11 @@ A apresentação e relatório devem conter os seguintes itens
 * Comparar a densidade espectral de potência das três modulações
 
 * Comparar a taxa de erro de bits (BER) das modulações
-  * Atenção : A equipe é livre para escolher como deverá variar os parâmetros, mas o objetivo aqui é que a equipe apresente de forma clara que parâmetros influencia na BER
+  * Considere os seguintes canais
+    * AWGN
+    * Rayleigh
+    * Rice
+    * Canal com filtro FIR
+  * A equipe é livre para escolher qualquer que seja o equalizador, mas deve explicar como funciona o equalizador.
 
 Após a apresentação da equipe será aberto para perguntas.
